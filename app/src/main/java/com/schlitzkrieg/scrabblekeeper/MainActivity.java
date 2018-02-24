@@ -1,13 +1,95 @@
 package com.schlitzkrieg.scrabblekeeper;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private String scoreTxt = "";
+
+    public Button btnP1Add;
+    public Button btnP2Add;
+    public Button btnP3Add;
+    public Button btnP4Add;
+
+    public TextView p1Score;
+    public TextView p2Score;
+    public TextView p3Score;
+    public TextView p4Score;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setupControls();
     }
+
+    void setupControls(){
+        btnP1Add = findViewById(R.id.btnP1add);
+        btnP2Add = findViewById(R.id.btnP2add);
+        btnP3Add = findViewById(R.id.btnP3add);
+        btnP4Add = findViewById(R.id.btnP4add);
+
+        p1Score = findViewById(R.id.vwP1score);
+        p2Score = findViewById(R.id.vwP2score);
+        p3Score = findViewById(R.id.vwP3score);
+        p4Score = findViewById(R.id.vwP4score);
+
+
+        btnP1Add.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                showScorePrompt((1));
+            }
+        });
+
+        btnP2Add.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                showScorePrompt((2));
+            }
+        });
+
+        btnP3Add.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                showScorePrompt((3));
+            }
+        });
+
+        btnP4Add.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                showScorePrompt((4));
+            }
+        });
+    }
+
+    void showScorePrompt(int playerNum){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Enter Word Score for player " + Integer.toString(playerNum));
+        final EditText input = new EditText(MainActivity.this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                scoreTxt = input.getText().toString();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
 }
