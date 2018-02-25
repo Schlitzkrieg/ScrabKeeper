@@ -5,14 +5,13 @@ import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    private String scoreTxt = "";
 
     public Button btnP1Add;
     public Button btnP2Add;
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView p3Score;
     public TextView p4Score;
 
+    ScoreKeeper scoreKeeper = new ScoreKeeper(0, 0,0,0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupControls();
+
+
     }
 
     void setupControls(){
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         p2Score = findViewById(R.id.vwP2score);
         p3Score = findViewById(R.id.vwP3score);
         p4Score = findViewById(R.id.vwP4score);
-
+        refreshScores();
 
         btnP1Add.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -70,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    void showScorePrompt(int playerNum){
-
+    void showScorePrompt(final int playerNum){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Enter Word Score for player " + Integer.toString(playerNum));
         final EditText input = new EditText(MainActivity.this);
@@ -80,7 +81,24 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                scoreTxt = input.getText().toString();
+                if(input.getText().length() > 0){
+                    int points = Integer.parseInt(input.getText().toString());
+
+                    if(playerNum == 1){
+                        scoreKeeper.Player1Score = scoreKeeper.Player1Score + points;
+                    }else if(playerNum == 2){
+                        scoreKeeper.Player2Score = scoreKeeper.Player2Score + points;
+                    }else if(playerNum == 3){
+                        scoreKeeper.Player3Score = scoreKeeper.Player3Score + points;
+                    }else if(playerNum == 4){
+                        scoreKeeper.Player4Score = scoreKeeper.Player4Score + points;
+                    }
+                    refreshScores();
+                }else{
+                    Log.d("NO TEXT DETECTED", "NO TEXT DETECTED");
+                }
+
+
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -90,6 +108,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         builder.show();
+    }
+
+    void refreshScores(){
+        //System.console().printf("am I broken here?");
+        p1Score.setText(Integer.toString(scoreKeeper.Player1Score));
+        p2Score.setText(Integer.toString(scoreKeeper.Player2Score));
+        p3Score.setText(Integer.toString(scoreKeeper.Player3Score));
+        p4Score.setText(Integer.toString(scoreKeeper.Player4Score));
     }
 
 }
