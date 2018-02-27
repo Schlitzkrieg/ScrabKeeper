@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context="com.schlitzkrieg.scrabblekeeper.MainActivity">
+    tools:context="com.schlitzkrieg.scrabkeeper.MainActivity">
 
 
     <RelativeLayout
@@ -163,10 +163,9 @@
             android:id="@+id/definitionDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/lblSearch"
-            android:layout_alignRight="@+id/lblSearch"
+            android:layout_alignLeft="@+id/searchInput"
+            android:layout_alignStart="@+id/searchInput"
             android:layout_below="@+id/searchInput"
-            android:editable="false"
             android:ems="10"
             android:inputType="textMultiLine"
             app:layout_constraintHorizontal_bias="0.111"

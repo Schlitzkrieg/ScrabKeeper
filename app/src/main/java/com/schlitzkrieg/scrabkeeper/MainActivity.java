@@ -1,4 +1,4 @@
-package com.schlitzkrieg.scrabblekeeper;
+package com.schlitzkrieg.scrabkeeper;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

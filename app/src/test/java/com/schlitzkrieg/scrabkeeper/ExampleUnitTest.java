@@ -1,4 +1,4 @@
-package com.schlitzkrieg.scrabblekeeper;
+package com.schlitzkrieg.scrabkeeper;
 
 import org.junit.Test;
 

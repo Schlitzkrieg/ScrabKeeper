@@ -1,4 +1,4 @@
-package com.schlitzkrieg.scrabblekeeper;
+package com.schlitzkrieg.scrabkeeper;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

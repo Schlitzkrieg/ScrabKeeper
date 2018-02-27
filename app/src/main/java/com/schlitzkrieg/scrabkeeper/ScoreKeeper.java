@@ -1,4 +1,4 @@
-package com.schlitzkrieg.scrabblekeeper;
+package com.schlitzkrieg.scrabkeeper;
 
 /**
  * Created by jdsch on 2/24/2018.

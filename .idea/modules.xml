@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ScrabbleKeeper.iml" filepath="$PROJECT_DIR$/ScrabbleKeeper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ScrabKeeper.iml" filepath="$PROJECT_DIR$/ScrabKeeper.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
