@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -23,22 +24,20 @@ public class WordChecker {
         this.words = loadWordList(context);
     }
 
-    ArrayList loadWordList(Context context){
+    private ArrayList loadWordList(Context context){
         ArrayList<String> wordFile = new ArrayList<String>();
 
         InputStream inputStream = context.getResources().openRawResource(R.raw.wordlisting);
         BufferedReader r = new BufferedReader(new InputStreamReader((inputStream)));
 
-        String line;
+        String line = null;
 
         try{
-            line = r.readLine();
+            while((line = r.readLine()) != null) {
+                wordFile.add(line);
+            }
         }catch (IOException e){
             Log.d("wordlisting load failed", e.toString());
-        }
-
-        for (String s : wordFile){
-            words.add(s);
         }
 
         return wordFile;
