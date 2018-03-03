@@ -61,10 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean validWord = false;
                 if(wordText.length() > 0){
                     validWord = wc.getWordExists(wordText);
-                }
-
-                if(validWord){
-
+                    showWordExists(validWord);
                 }
             }
         });
@@ -93,6 +90,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    void showWordExists(boolean wordExists){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        if(wordExists) {
+            builder.setTitle("WORD EXISTS!!!");
+        }else {
+            builder.setTitle("INVALID WORD");
+        }
+        //builder.setView();
+        builder.show();
+    }
+
 
     void showScorePrompt(final int playerNum){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
