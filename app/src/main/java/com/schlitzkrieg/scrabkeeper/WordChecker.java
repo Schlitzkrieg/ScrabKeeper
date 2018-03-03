@@ -1,30 +1,35 @@
 package com.schlitzkrieg.scrabkeeper;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * Created by jdsch on 2/26/2018.
  */
 
-public class WordChecker {
+public class WordChecker{
 
-    ArrayList words;
+    ArrayList WordList;
 
     WordChecker(Context context){
-        this.words = loadWordList(context);
+        this.WordList = getWordList(context);
     }
 
-    private ArrayList loadWordList(Context context){
+    public boolean getWordExists(String testWord){
+        if(this.WordList.contains(testWord)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    private ArrayList getWordList(Context context){
         ArrayList<String> wordFile = new ArrayList<String>();
 
         InputStream inputStream = context.getResources().openRawResource(R.raw.wordlisting);
@@ -33,7 +38,7 @@ public class WordChecker {
         String line = null;
 
         try{
-            while((line = r.readLine()) != null) {
+            while((line = r.readLine()) != null){
                 wordFile.add(line);
             }
         }catch (IOException e){
