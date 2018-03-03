@@ -22,7 +22,7 @@ public class WordChecker{
     }
 
     public boolean getWordExists(String testWord){
-        if(this.WordList.contains(testWord)){
+        if(this.WordList.contains(testWord.toLowerCase())){
             return true;
         }else {
             return false;
