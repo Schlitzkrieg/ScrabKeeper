@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Button btnWordCheck;
     public Button btnP1Add;
     public Button btnP2Add;
     public Button btnP3Add;
@@ -24,18 +25,22 @@ public class MainActivity extends AppCompatActivity {
     public TextView p4Score;
 
     ScoreKeeper scoreKeeper = new ScoreKeeper(0, 0,0,0);
+    WordChecker wc = new WordChecker(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //TODO: Find out why onCreate is not being entered at runtime
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        wc = new WordChecker(this);
         setupControls();
 
 
     }
 
     void setupControls(){
+        btnWordCheck = findViewById((R.id.btnWordCheck));
         btnP1Add = findViewById(R.id.btnP1add);
         btnP2Add = findViewById(R.id.btnP2add);
         btnP3Add = findViewById(R.id.btnP3add);
@@ -46,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
         p3Score = findViewById(R.id.vwP3score);
         p4Score = findViewById(R.id.vwP4score);
         refreshScores();
+
+        btnWordCheck.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+               //do nothing for now
+            }
+        });
 
         btnP1Add.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
