@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public EditText inputText;
+
     public Button btnWordCheck;
     public Button btnP1Add;
     public Button btnP2Add;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView p4Score;
 
     ScoreKeeper scoreKeeper = new ScoreKeeper(0, 0,0,0);
-    WordChecker wc = new WordChecker(this);
+    WordChecker wc = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void setupControls(){
+        inputText = findViewById((R.id.searchInput));
         btnWordCheck = findViewById((R.id.btnWordCheck));
         btnP1Add = findViewById(R.id.btnP1add);
         btnP2Add = findViewById(R.id.btnP2add);
@@ -54,7 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
         btnWordCheck.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-               //do nothing for now
+                String wordText = inputText.getText().toString();
+                boolean validWord = false;
+                if(wordText.length() > 0){
+                    validWord = wc.getWordExists(wordText);
+                }
+
+                if(validWord){
+
+                }
             }
         });
 
